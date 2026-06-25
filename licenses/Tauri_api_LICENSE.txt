@@ -1,0 +1,7 @@
+This application uses Tauri.
+
+MIT License
+
+Copyright (c) 2017 - Present Tauri Apps Contributors
+
+Permission is hereby granted...

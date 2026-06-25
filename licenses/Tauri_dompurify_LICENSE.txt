@@ -1,0 +1,5 @@
+DOMPurify
+Copyright 2025 Dr.-Ing. Mario Heiderich, Cure53
+
+This software is licensed under the Apache License 2.0
+or the Mozilla Public License 2.0.

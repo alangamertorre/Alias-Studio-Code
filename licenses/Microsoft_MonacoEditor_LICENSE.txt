@@ -1,0 +1,4 @@
+[monaco-editor]
+Copyright (c) 2016 - present Microsoft Corporation
+
+Licensed under the MIT License.

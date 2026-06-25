@@ -1,0 +1,5 @@
+Marked
+Copyright (c) 2018+, MarkedJS
+Copyright (c) 2011-2018, Christopher Jeffrey
+
+Licensed under the MIT License.

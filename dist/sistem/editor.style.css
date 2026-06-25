@@ -1,0 +1,42 @@
+/*Fonts & others*/
+@font-face {
+    font-family: 'codicon';
+    src: url('sistem/fonts/codicon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-size: normal;
+}
+
+:root {
+    --bg-main: #121314;
+    --bg-submain: #191919;
+    --border: #444;
+    --text-tooltips: #b8b8b8;
+    --text-placeholder: #5c5c5c;
+    --text-secondary: #727272;
+    --text-primary: #888888;
+    --fs-smallest: 8px;
+    --fs-small: 12px;
+    --fs-normal: 16px;
+    --fs-large: 24px;
+    --fs-largest: 32px;
+}
+
+/*Styles in Monaco Editor*/
+.monaco-editor .cldr.codicon.codicon-folding-expanded,
+.monaco-editor .cldr.codicon.codicon-folding-expanded::before,
+.monaco-editor .cldr.codicon.codicon-folding-collapsed {
+    font-family: 'codicon' !important;
+    font-size: var(--fs-normal) !important;
+    color: #7d8185 !important;
+}
+
+.monaco-editor .line-numbers {
+    width: auto !important;
+    margin-left: 10px !important;
+}
+
+.monaco-editor .current-line {
+    border: none !important;
+    background-color: #2c2c2c8c !important;
+}

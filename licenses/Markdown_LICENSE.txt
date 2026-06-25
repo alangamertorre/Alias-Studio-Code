@@ -1,0 +1,4 @@
+Markdown
+Copyright © 2004, John Gruber
+
+Redistribution and use permitted under the Markdown license.
