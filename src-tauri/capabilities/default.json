@@ -9,9 +9,104 @@
     "core:window:allow-close",
     "core:window:allow-minimize",
     "core:window:allow-maximize",
-    "core:window:allow-create",
-    "core:window:allow-set-icon",
     "core:window:allow-unmaximize",
-    "core:window:allow-unminimize"
+    "core:window:allow-unminimize",
+    "core:window:allow-is-maximized",
+    "core:path:allow-basename",
+    "core:path:allow-extname",
+    "core:path:allow-join",
+    "core:path:default",
+    "core:event:allow-listen",
+    "core:event:default",
+    "core:resources:default",
+    {
+      "identifier": "fs:allow-read-text-file",
+      "allow": [
+        {
+          "path": "C:/**"
+        },
+        {
+          "path": "D:/**"
+        },
+        {
+          "path": "F:/**"
+        }
+      ]
+    },
+    "fs:allow-write-file",
+    {
+      "identifier": "fs:allow-remove",
+      "allow": [
+        {
+          "path": "C:/**"
+        },
+        {
+          "path": "D:/**"
+        },
+        {
+          "path": "F:/**"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-mkdir",
+      "allow": [
+        {
+          "path": "C:/**"
+        },
+        {
+          "path": "D:/**"
+        },
+        {
+          "path": "F:/**"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-read-dir",
+      "allow": [
+        {
+          "path": "C:/**"
+        },
+        {
+          "path": "D:/**"
+        },
+        {
+          "path": "F:/**"
+        }
+      ]
+    },
+    "fs:allow-read-file",
+    {
+      "identifier": "fs:allow-create",
+      "allow": [
+        {
+          "path": "C:/**"
+        },
+        {
+          "path": "D:/**"
+        },
+        {
+          "path": "F:/**"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-write-text-file",
+      "allow": [
+        {
+          "path": "C:/**"
+        },
+        {
+          "path": "D:/**"
+        },
+        {
+          "path": "F:/**"
+        }
+      ]
+    },
+    "dialog:default",
+    "shell:allow-open",
+    "shell:deny-open"
   ]
 }
