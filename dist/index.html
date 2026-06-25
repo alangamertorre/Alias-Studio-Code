@@ -1,5 +1,4 @@
 <!doctype html>
-<!--Document-->
 <html lang="en">
 
 <head>
@@ -9,8 +8,8 @@
     <!-- Anime.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js" crossorigin="anonymous"></script>
 
-    <!-- loader.js-->
-    <script src="./vs/loader.js"></script>
+    <!-- loader.js & otros-->
+    <script src="./sistem/vs/loader.js"></script>
 
     <!-- El resto-->
     <script src="script.js" defer></script>
@@ -18,34 +17,14 @@
     <script src="pes/n-pes/n-pes.js" defer></script>
 
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="sistem/style.css" />
+    <link rel="stylesheet" href="sistem/sistem.css" />
+    <link rel="stylesheet" href="sistem/editor.style.css" />
     <link rel="stylesheet" href="pes/n-pes/n-pes.css" />
     <script>
         document.addEventListener("contextmenu", (e) => {
             e.preventDefault();
         });
     </script>
-    <style>
-        body {
-            background-color: #121314;
-            z-index: 0;
-            transition: 0.2s ease;
-            flex-direction: column;
-            position: fixed;
-            font-family:
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Oxygen,
-                Ubuntu,
-                Cantarell,
-                "Open Sans",
-                "Helvetica Neue",
-                sans-serif;
-        }
-    </style>
 </head>
 
 <body>
@@ -97,32 +76,31 @@
         </div>
         <!--Options Bar 2-->
         <div class="barra2">
-            <!-- FIX: IDs únicos en lugar de id="btn2" repetido x6 -->
-            <div class="BT1 btn-barra2" id="btn-compilar">Compilar</div>
-            <div class="BT2 btn-barra2" id="btn-ejecutable">Crear ejecutable</div>
-            <div class="BT3 btn-barra2" id="btn-instalador">Crear instalador y desinstalador</div>
+            <div class="BT1 btn-barra2" id="btn-editar">Editar</div>
+            <div class="BT2 btn-barra2" id="btn-ver">Ver</div>
+            <div class="BT3 btn-barra2" id="btn-ayuda">Ayuda</div>
             <div class="BT4 btn-barra2" id="btn-ejecutar">Ejecutar</div>
-            <div class="BT5 btn-barra2" id="btn-panel">Panel de Control</div>
+            <div class="BT5 btn-barra2" id="btn-compilar">Compilar</div>
             <div class="BT6 btn-barra2" id="btn-mas">Más...</div>
             <input type="text" id="BuscadorInput" placeholder="Buscador de archivos y más..." />
             <div class="InfoDelCodigo">
-                <div class="NºErrores">
+                <div class="errores">
                     <img class="svg9" src="img/Error.svg" />
-                    <p class="TxtError">0</p>
+                    <p class="err_txt">0</p>
                 </div>
-                <div class="NºAdvertencias">
+                <div class="advert">
                     <img class="svg10" src="img/Alerta.svg" />
-                    <p class="TxtAlerta">0</p>
+                    <p class="adv_txt">0</p>
                 </div>
-                <div class="LinCol">
-                    <p class="TxtLin">Lín.</p>
-                    <p class="TxtLin1">1</p>
-                    <p class="TxtCol">Col.</p>
-                    <p class="TxtCol1">1</p>
+                <div class="lin_col">
+                    <p class="lin1">Lín.</p>
+                    <p id="lin2">1</p>
+                    <p class="col1">Col.</p>
+                    <p id="col2">1</p>
                 </div>
-                <div class="Codificacion">
-                    <p class="TxtCod">Codificación:</p>
-                    <p class="TxtTCod">UTF-8</p>
+                <div class="codificacion">
+                    <p>Codificación:</p>
+                    <p id="cod2">UTF-8</p>
                 </div>
             </div>
         </div>
@@ -140,30 +118,28 @@
             <div class="w-bar"></div>
             <div class="func-btn1">
                 <h2 class="tit-btn1">Archivos</h2>
-                <div style="height: 1.5px; width: 100%; background-color: #444" class="lin-barra4"></div>
+                <div class="lin-barra4"></div>
 
                 <div class="btn1-c">
                     <div class="c-btn1">
                         <p class="p-btn1">Editores abiertos</p>
-                        <div class="y"></div>
-                        <!--Añadir futuramente-->
+                        <div class="y" id="y_adv1"></div>
                     </div>
                     <p class="txt-adv" id="txt_adv1">No hay editores abiertos.</p>
                 </div>
 
-                <div style="height: 1.5px; width: 100%; background-color: #444" class="lin-barra4"></div>
+                <div class="lin-barra4"></div>
 
                 <div class="btn1-c">
                     <div class="c-btn1">
-                        <p class="p-btn1" id="nombre-carpeta-abierta">Archivos abiertos</p>
-                        <div class="y"></div>
-                        <!--""-->
+                        <p class="p-btn1" id="nombre-carpeta-abierta">Carpeta abierta</p>
+                        <div class="y" id="y_adv2"></div>
                     </div>
                     <div class="txt-adv-btn1">
                         <p class="txt-adv" id="txt_adv2">No hay archivos abiertos.</p>
-                        <!-- FIX: id único "btn-open-barra4" -->
-                        <button class="txt-adv" id="btn-open-barra4"
-                            style="margin-top: 8px; transform: scale(0.8); font-size: 16px; display: none;">
+
+                        <div class="folder-schema"></div>
+                        <button class="txt-adv" id="btn1-open-barra4">
                             Abrir carpeta
                             <div class="btn-open2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -175,32 +151,266 @@
                         </button>
                         <div class="menu-des-btn-open" id="btn1-open">
                             <button class="opt1-btn-open">Abrir archivo</button>
-                            <div style="height: 1px; width: 100%; background-color: rgba(21, 50, 78, 0.959)"
-                                class="lin-barra4"></div>
+                            <div class="lin-barra4 lin-barra4-alt"></div>
                             <button class="opt2-btn-open">Abrir proyecto</button>
                         </div>
                     </div>
                 </div>
 
-                <div style="height: 1.5px; width: 100%; background-color: #444" class="lin-barra4"></div>
+                <div class="lin-barra4"></div>
 
                 <div class="btn1-c">
                     <div class="c-btn1">
                         <p class="p-btn1">Línea de tiempo</p>
-                        <div class="y"></div>
-                        <!--""-->
+                        <div class="y" id="y_adv3"></div>
                     </div>
                     <p class="txt-adv" id="txt_adv3">No se ha guardado nada.</p>
+                    <li class="btn1-timeline"></li>
                 </div>
 
-                <div style="height: 1.5px; width: 100%; background-color: #444" class="lin-barra4"></div>
+                <div class="lin-barra4"></div>
 
             </div>
             <div class="func-btn2"></div>
             <div class="func-btn3"></div>
             <div class="func-btn4"></div>
             <div class="func-btn5"></div>
-            <div class="func-btn6"></div>
+            <div class="func-btn6">
+                <h2 class="tit-btn1">Lenguaje</h2>
+                <div class="lin-barra4"></div>
+                <div class="btn6-c">
+                    <p>Seleccione un lenguaje</p>
+                    <div class="lin-barra4"></div>
+                    <p id="txt_adv6">No hay editores seleccionados.</p>
+                    <li class="cont-btn6">
+                        <div class="cont-btn6-item" data-lang="js">
+                            <p>JavaScript</p><img src="img/Lenguajes/js.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="html">
+                            <p>HTML</p><img src="img/Lenguajes/html.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="css">
+                            <p>CSS</p><img src="img/Lenguajes/css.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="python">
+                            <p>Python</p><img src="img/Lenguajes/python.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="rs">
+                            <p>Rust</p><img src="img/Lenguajes/rust.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="ts">
+                            <p>TypeScript</p><img src="img/Lenguajes/typescript.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="json">
+                            <p>JSON</p><img src="img/Lenguajes/json.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="cs">
+                            <p>C#</p><img src="img/Lenguajes/csharp.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="cpp">
+                            <p>C++</p><img src="img/Lenguajes/cpp.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="c">
+                            <p>C</p><img src="img/Lenguajes/c.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="txt">
+                            <p>Text</p><img src="img/Lenguajes/text.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="docx">
+                            <p>Word Document</p><img src="img/Lenguajes/document.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="odt">
+                            <p>OpenDocument</p><img src="img/Lenguajes/document.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="vue">
+                            <p>Vue</p><img src="img/Lenguajes/vue.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="apk">
+                            <p>Android</p><img src="img/Lenguajes/android.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="kt">
+                            <p>Kotlin</p><img src="img/Lenguajes/android.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="jsx">
+                            <p>JSX</p><img src="img/Lenguajes/react.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="tsx">
+                            <p>TSX</p><img src="img/Lenguajes/react.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="rct">
+                            <p>React</p><img src="img/Lenguajes/react.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="exe">
+                            <p>Executable</p><img src="img/Lenguajes/exe.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="bat">
+                            <p>Batch</p><img src="img/Lenguajes/console.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="vbs">
+                            <p>VBScript</p><img src="img/Lenguajes/console.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="go">
+                            <p>Go</p><img src="img/Lenguajes/go.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="md">
+                            <p>Markdown</p><img src="img/Lenguajes/markdown.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="ng">
+                            <p>Angular</p><img src="img/Lenguajes/angular.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="applescript">
+                            <p>AppleScript</p><img src="img/Lenguajes/applescript.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="gs">
+                            <p>Google Apps Script</p><img src="img/Lenguajes/apps-script.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="arch">
+                            <p>Architecture</p><img src="img/Lenguajes/architecture.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="adoc">
+                            <p>AsciiDoc</p><img src="img/Lenguajes/asciidoc.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="asm">
+                            <p>Assembly</p><img src="img/Lenguajes/assembly.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="azure">
+                            <p>Azure</p><img src="img/Lenguajes/azure.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="bib">
+                            <p>Bibliography</p><img src="img/Lenguajes/bibliography.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="bst">
+                            <p>BibTeX Style</p><img src="img/Lenguajes/bibtex-style.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="c3">
+                            <p>C3</p><img src="img/Lenguajes/c3.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="crt">
+                            <p>Certificate</p><img src="img/Lenguajes/certificate.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="changelog">
+                            <p>Changelog</p><img src="img/Lenguajes/changelog.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="chrome">
+                            <p>Chrome</p><img src="img/Lenguajes/chrome.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="claude">
+                            <p>Claude</p><img src="img/Lenguajes/claude.svg" loading="lazy  ">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="clj">
+                            <p>Clojure</p><img src="img/Lenguajes/clojure.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="edn">
+                            <p>EDN</p><img src="img/Lenguajes/clojure.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="coffee">
+                            <p>CoffeeScript</p><img src="img/Lenguajes/coffee.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="command">
+                            <p>Command</p><img src="img/Lenguajes/command.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="cz">
+                            <p>Commitizen</p><img src="img/Lenguajes/commitizen.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="commitlint">
+                            <p>Commitlint</p><img src="img/Lenguajes/commitlint.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="cue">
+                            <p>Cue</p><img src="img/Lenguajes/cue.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="cursor">
+                            <p>Cursor</p><img src="img/Lenguajes/cursor.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="db">
+                            <p>Database</p><img src="img/Lenguajes/database.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="sqlite">
+                            <p>SQLite</p><img src="img/Lenguajes/database.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="sql">
+                            <p>SQL</p><img src="img/Lenguajes/database.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="deno">
+                            <p>Deno</p><img src="img/Lenguajes/deno.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="deps">
+                            <p>Dependencies</p><img src="img/Lenguajes/dependencies-update.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="dll">
+                            <p>DLL</p><img src="img/Lenguajes/dll.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="dockerfile">
+                            <p>Dockerfile</p><img src="img/Lenguajes/docker.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="esbuild">
+                            <p>Esbuild</p><img src="img/Lenguajes/esbuild.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="eslintrc">
+                            <p>ESLint</p><img src="img/Lenguajes/eslint.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="gml">
+                            <p>GameMaker</p><img src="img/Lenguajes/gamemaker.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="gemini">
+                            <p>Gemini AI</p><img src="img/Lenguajes/gemini-ai.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="gitignore">
+                            <p>.gitignore</p><img src="img/Lenguajes/git.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="gitkeep">
+                            <p>.gitkeep</p><img src="img/Lenguajes/git.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="gitattributes">
+                            <p>.gitattributes</p><img src="img/Lenguajes/git.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="yml">
+                            <p>YAML</p><img src="img/Lenguajes/github-actions-workflow.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="gitlab">
+                            <p>GitLab</p><img src="img/Lenguajes/gitlab.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="gd">
+                            <p>GDScript</p><img src="img/Lenguajes/godot.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="hex">
+                            <p>Hex</p><img src="img/Lenguajes/hex.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="http">
+                            <p>HTTP</p><img src="img/Lenguajes/http.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="rest">
+                            <p>REST</p><img src="img/Lenguajes/http.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="jar">
+                            <p>JAR</p><img src="img/Lenguajes/jar.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="java">
+                            <p>Java</p><img src="img/Lenguajes/java.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="jl">
+                            <p>Julia</p><img src="img/Lenguajes/julia.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="lib">
+                            <p>Library</p><img src="img/Lenguajes/lib.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="lua">
+                            <p>Lua</p><img src="img/Lenguajes/lua.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="makefile">
+                            <p>Makefile</p><img src="img/Lenguajes/makefile.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="mcfunction">
+                            <p>Minecraft Function</p><img src="img/Lenguajes/minecraft.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="mcaddon">
+                            <p>Minecraft Addon</p><img src="img/Lenguajes/minecraft.svg" loading="lazy">
+                        </div>
+                        <div class="cont-btn6-item" data-lang="ps">
+                            <p>PowerShell</p><img src="img/Lenguajes/powershell.svg" loading="lazy">
+                        </div>
+                    </li>
+                </div>
+            </div>
         </div>
         <!--carga...-->
     </div>
